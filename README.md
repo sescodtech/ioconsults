@@ -1,10 +1,10 @@
-# IOCONSULTS — Website Rebuild
+# IOCONSULTS — Website
 
-A from-scratch, custom-coded rebuild of the IOCONSULTS marketing site,
-replacing a previous WordPress installation that was compromised (spam links
-injected into the footer and an internal page, pointing to gambling sites —
-a classic sign of a hacked WP install, likely via an outdated
-plugin/theme or leaked admin credentials).
+A custom-coded Next.js rebuild of the IOCONSULTS marketing site, replacing a
+previous WordPress installation that was compromised (spam links injected
+into the footer and an internal page, pointing to gambling sites — a classic
+sign of a hacked WP install, likely via an outdated plugin/theme or leaked
+admin credentials).
 
 ## Why this stack is safer
 
@@ -18,6 +18,16 @@ plugin/theme or leaked admin credentials).
   `Referrer-Policy`, `Permissions-Policy`) are set in `next.config.js`.
 - The contact form has server-side validation, a honeypot field, and basic
   rate limiting, and never trusts client input.
+
+## Brand
+
+- Colors: deep purple/violet gradient (`#2D1B69` → `#3D2490` → `#6B3FCE`),
+  accent purple `#5533B5`, lavender highlight `#C4A8FF`, ink text `#1A1530`.
+  All defined as Tailwind tokens in `tailwind.config.ts`.
+- Type: Playfair Display (headings), Plus Jakarta Sans (body), IBM Plex Mono
+  (small labels/eyebrows).
+- Logo: pulled live from Cloudinary in `components/Logo.tsx`. To change it,
+  update the `LOGO_URL` constant in that file.
 
 ## Stack
 
@@ -51,19 +61,6 @@ Visit http://localhost:3000
    branded sender address.
 4. `CONTACT_TO_EMAIL` is where form submissions land — defaults to
    `contact@ioconsults.com.ng`.
-
-## Outstanding item: the logo
-
-The original logo file (`WEBSITE-LOGO-1.png`) could not be retrieved — my
-sandbox doesn't have outbound internet access to download binary files
-directly, and the old site wasn't loading reliably. I built a text-based
-wordmark placeholder (`components/Logo.tsx`) styled to the brand palette so
-the site isn't blocked on this.
-
-To swap in the real logo once you have the file:
-1. Drop the image into `/public/` (e.g. `/public/logo.png`)
-2. Replace the contents of `components/Logo.tsx` with a Next.js `<Image>`
-   tag pointing at it (ask me and I'll wire this up for you in a minute).
 
 ## Deployment (recommended: Vercel)
 
@@ -100,20 +97,19 @@ app/
   layout.tsx          Root layout, fonts, metadata
   page.tsx             Home page (assembles all sections)
   globals.css          Design tokens, base styles
-  sitemap.ts            /sitemap.xml
-  robots.ts             /robots.txt
-  our-story/page.tsx    Our Story page (placeholder copy — see note below)
-  api/contact/route.ts  Contact form handler (Resend)
+  sitemap.ts           /sitemap.xml
+  robots.ts            /robots.txt
+  our-story/page.tsx   Our Story page
+  api/contact/route.ts Contact form handler (Resend)
 components/
   Header.tsx, Hero.tsx, Services.tsx, About.tsx, Process.tsx,
-  Contact.tsx, ContactForm.tsx, Footer.tsx, WhatsAppButton.tsx, Logo.tsx
+  Testimonial.tsx, CTA.tsx, Contact.tsx, ContactForm.tsx, Footer.tsx,
+  WhatsAppButton.tsx, Logo.tsx
 ```
 
 ## Note on "Our Story" page content
 
-The old site's "Our Story" page was still showing generic Elementor
-placeholder text ("Welcome to our website. We are dedicated to providing
-quality content and services...") — it appears this page was never actually
-written, and it also had a spam link injected. So nothing real was lost in
-the rebuild; the new page has clearly-marked placeholder copy for you to
-replace with your actual founding story.
+The copy on `/our-story` is written to be publish-ready and consistent with
+the rest of the site, but it was authored during this rebuild rather than
+sourced from the founders directly — review it and adjust any specifics
+(founding year, specific milestones, names) before treating it as final.

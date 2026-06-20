@@ -108,38 +108,38 @@ export async function POST(req: NextRequest) {
       reply_to: email.trim(),
       subject: `New enquiry: ${safe.service} — ${safe.firstName} ${safe.lastName}`,
       html: `
-        <div style="font-family: Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #0F1A14;">
-          <div style="background-color: #13261F; padding: 24px 32px;">
-            <span style="color: #F7F4ED; font-size: 20px; font-weight: 600; letter-spacing: 0.02em;">IOCONSULTS</span>
+        <div style="font-family: Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #1A1530;">
+          <div style="background-color: #2D1B69; padding: 24px 32px;">
+            <span style="color: #FFFFFF; font-size: 20px; font-weight: 700; letter-spacing: 0.02em;">IOCONSULTS</span>
           </div>
-          <div style="padding: 32px; background-color: #F7F4ED;">
-            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: #C9A227; margin: 0 0 16px;">
+          <div style="padding: 32px; background-color: #F7F6FB;">
+            <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; color: #5533B5; margin: 0 0 16px;">
               New Website Enquiry
             </p>
             <table style="width: 100%; border-collapse: collapse; font-size: 14px;">
               <tr>
-                <td style="padding: 8px 0; color: #5B6B5E; width: 140px; vertical-align: top;">Name</td>
+                <td style="padding: 8px 0; color: #8080A0; width: 140px; vertical-align: top;">Name</td>
                 <td style="padding: 8px 0;">${safe.firstName} ${safe.lastName}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #5B6B5E; vertical-align: top;">Company</td>
+                <td style="padding: 8px 0; color: #8080A0; vertical-align: top;">Company</td>
                 <td style="padding: 8px 0;">${safe.company}</td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #5B6B5E; vertical-align: top;">Email</td>
-                <td style="padding: 8px 0;"><a href="mailto:${safe.email}" style="color: #13261F;">${safe.email}</a></td>
+                <td style="padding: 8px 0; color: #8080A0; vertical-align: top;">Email</td>
+                <td style="padding: 8px 0;"><a href="mailto:${safe.email}" style="color: #2D1B69;">${safe.email}</a></td>
               </tr>
               <tr>
-                <td style="padding: 8px 0; color: #5B6B5E; vertical-align: top;">Service</td>
+                <td style="padding: 8px 0; color: #8080A0; vertical-align: top;">Service</td>
                 <td style="padding: 8px 0;">${safe.service}</td>
               </tr>
             </table>
-            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #D9D3C3;">
-              <p style="color: #5B6B5E; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 8px;">Message</p>
+            <div style="margin-top: 20px; padding-top: 20px; border-top: 1px solid #E2DFF0;">
+              <p style="color: #8080A0; font-size: 12px; text-transform: uppercase; letter-spacing: 0.12em; margin: 0 0 8px;">Message</p>
               <p style="font-size: 14px; line-height: 1.6; margin: 0;">${safe.message}</p>
             </div>
           </div>
-          <div style="padding: 16px 32px; background-color: #13261F; color: #F7F4ED99; font-size: 11px;">
+          <div style="padding: 16px 32px; background-color: #2D1B69; color: #FFFFFF99; font-size: 11px;">
             Sent from the IOCONSULTS website contact form.
           </div>
         </div>

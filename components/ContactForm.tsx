@@ -55,7 +55,7 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="border hairline bg-forest/5 p-8 text-center">
+      <div className="rounded-xl border hairline bg-forest/5 p-8 text-center">
         <p className="font-display text-2xl text-forest">Message sent.</p>
         <p className="mt-2 text-sm text-ink/70">
           Thank you — we&rsquo;ll get back to you shortly.
@@ -175,7 +175,7 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex items-center gap-2 bg-forest text-bone text-sm font-medium px-7 py-3.5 hover:bg-ink transition-colors disabled:opacity-60 disabled:cursor-not-allowed"
+        className="inline-flex items-center gap-2 rounded-lg bg-brand-button text-white text-sm font-bold px-7 py-3.5 shadow-[0_6px_22px_rgba(45,27,105,0.28)] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(45,27,105,0.4)] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
       >
         {status === "loading" ? "Sending…" : "Send Message"}
         {status !== "loading" && <span aria-hidden="true">→</span>}

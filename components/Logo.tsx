@@ -1,28 +1,41 @@
+import Image from "next/image";
+
+const LOGO_URL =
+  "https://res.cloudinary.com/dwe7lkty4/image/upload/v1781986878/4df55acf-088d-4ec8-b87f-641fb10aca08_wxzr0v.jpg";
+
 type LogoProps = {
   variant?: "dark" | "light";
   className?: string;
 };
 
 /**
- * Text-based wordmark placeholder.
- * Swap this for an <Image> tag once the original logo file is recovered —
- * see /public/README.md for instructions.
+ * IOCONSULTS wordmark/logo.
+ * On dark backgrounds ("light" variant — footer, gradient sections) the mark
+ * sits inside a small white chip so it stays crisp regardless of the source
+ * file's own background, rather than relying on a CSS invert filter that can
+ * distort a logo with mixed colors.
  */
 export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const isLight = variant === "light";
-  return (
-    <span
-      className={`inline-flex items-baseline gap-[2px] font-display font-semibold tracking-tight ${className}`}
-    >
-      <span className={isLight ? "text-bone" : "text-forest"}>IO</span>
-      <span className={isLight ? "text-brass-light" : "text-brass"}>·</span>
-      <span
-        className={`text-[0.58em] font-body font-semibold tracking-widest2 uppercase translate-y-[-0.05em] ${
-          isLight ? "text-bone/80" : "text-forest/80"
-        }`}
-      >
-        Consults
-      </span>
-    </span>
+
+  const img = (
+    <Image
+      src={LOGO_URL}
+      alt="IOCONSULTS"
+      height={40}
+      width={150}
+      priority
+      className="h-8 w-auto object-contain md:h-10"
+    />
   );
+
+  if (isLight) {
+    return (
+      <span className={`inline-flex items-center rounded-lg bg-white px-3 py-1.5 ${className}`}>
+        {img}
+      </span>
+    );
+  }
+
+  return <span className={`inline-flex items-center ${className}`}>{img}</span>;
 }

@@ -3,8 +3,8 @@
 @tailwind utilities;
 
 :root {
-  --font-display: "Fraunces", Georgia, serif;
-  --font-body: "Inter", Helvetica, Arial, sans-serif;
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-body: "Plus Jakarta Sans", Helvetica, Arial, sans-serif;
   --font-mono: "IBM Plex Mono", monospace;
 }
 
@@ -22,14 +22,14 @@
 }
 
 body {
-  background-color: #F7F4ED;
-  color: #0F1A14;
+  background-color: #FFFFFF;
+  color: #1A1530;
   font-feature-settings: "kern" 1, "liga" 1;
 }
 
 ::selection {
-  background-color: #C9A227;
-  color: #0F1A14;
+  background-color: #C4A8FF;
+  color: #1A1530;
 }
 
 /* Visible keyboard focus everywhere */
@@ -38,44 +38,100 @@ button:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid #C9A227;
+  outline: 2px solid #5533B5;
   outline-offset: 3px;
 }
 
-/* Margin-note / annotation label, used as the section signature device */
+/* Eyebrow / section label device — small caps tag above headings */
 .section-mark {
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 0.6875rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: #C9A227;
-  position: relative;
-  padding-left: 1.1rem;
+  font-weight: 700;
+  color: #5533B5;
+  display: inline-block;
+  background-color: #F5F2FD;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
 }
 
-.section-mark::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 0.45em;
-  width: 0.7rem;
-  height: 1px;
-  background-color: #C9A227;
+.section-mark.on-dark {
+  color: #C4A8FF;
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
-/* Report-style §-numbered process steps */
+/* Numbered process / service markers */
 .report-number {
-  font-family: var(--font-mono);
-  font-size: 0.8125rem;
-  color: #C9A227;
-  letter-spacing: 0.05em;
+  font-family: var(--font-display);
+  font-weight: 500;
+  color: #5533B5;
+  letter-spacing: 0;
 }
 
 .hairline {
-  border-color: #D9D3C3;
+  border-color: #E2DFF0;
 }
 
+/* Soft dotted texture used sparingly behind hero-adjacent sections */
 .bg-paper-texture {
-  background-image: radial-gradient(circle at 1px 1px, rgba(15, 26, 20, 0.035) 1px, transparent 0);
+  background-image: radial-gradient(circle at 1px 1px, rgba(45, 27, 105, 0.045) 1px, transparent 0);
   background-size: 22px 22px;
+}
+
+/* Floating orb glow used behind the logo mark on dark/gradient sections */
+.brand-orb {
+  position: relative;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.1);
+  background: radial-gradient(circle at 35% 35%, rgba(156, 109, 255, 0.22), transparent 65%);
+  animation: orbFloat 6s ease-in-out infinite;
+}
+
+.brand-orb::before {
+  content: "";
+  position: absolute;
+  inset: 12%;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.07);
+}
+
+.brand-orb::after {
+  content: "";
+  position: absolute;
+  inset: 28%;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+@keyframes orbFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .brand-orb {
+    animation: none;
+  }
+}
+
+/* Twinkling sparkle dots in the hero */
+.sparkle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.7);
+  animation: twinkle 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.6); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sparkle {
+    animation: none;
+    opacity: 0.6;
+  }
 }
