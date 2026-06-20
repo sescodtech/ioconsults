@@ -1,41 +1,32 @@
 import Image from "next/image";
 
-const LOGO_URL =
-  "https://res.cloudinary.com/dwe7lkty4/image/upload/v1781986878/4df55acf-088d-4ec8-b87f-641fb10aca08_wxzr0v.jpg";
-
 type LogoProps = {
   variant?: "dark" | "light";
   className?: string;
 };
 
 /**
- * IOCONSULTS wordmark/logo.
- * On dark backgrounds ("light" variant — footer, gradient sections) the mark
- * sits inside a small white chip so it stays crisp regardless of the source
- * file's own background, rather than relying on a CSS invert filter that can
- * distort a logo with mixed colors.
+ * IOCONSULTS wordmark (icon + "IOCONSULTS" — tagline dropped at this size
+ * since it becomes illegible below ~100px wide). Served from /public, so it
+ * has zero dependency on WordPress or any third-party host.
+ *
+ * "light" variant (footer, dark sections) inverts the mark to solid white —
+ * the source file has a genuinely transparent background, so this renders
+ * as a clean white silhouette rather than a boxed-in logo.
  */
 export default function Logo({ variant = "dark", className = "" }: LogoProps) {
   const isLight = variant === "light";
 
-  const img = (
-    <Image
-      src={LOGO_URL}
-      alt="IOCONSULTS"
-      height={40}
-      width={150}
-      priority
-      className="h-8 w-auto object-contain md:h-10"
-    />
+  return (
+    <span className={`inline-flex items-center ${className}`}>
+      <Image
+        src="/logo.png"
+        alt="IOCONSULTS"
+        height={40}
+        width={102}
+        priority
+        className={`h-8 w-auto object-contain md:h-9 ${isLight ? "brightness-0 invert" : ""}`}
+      />
+    </span>
   );
-
-  if (isLight) {
-    return (
-      <span className={`inline-flex items-center rounded-lg bg-white px-3 py-1.5 ${className}`}>
-        {img}
-      </span>
-    );
-  }
-
-  return <span className={`inline-flex items-center ${className}`}>{img}</span>;
 }

@@ -79,9 +79,11 @@ select:focus-visible {
   background-size: 22px 22px;
 }
 
-/* Floating orb glow used behind the logo mark on dark/gradient sections */
+/* Floating orb glow used behind the logo mark on dark/gradient sections.
+   Positioning (position/top/right/size) is applied inline on the element
+   itself in Hero.tsx — this class only supplies the visual ring/glow so it
+   never fights with layout utilities. */
 .brand-orb {
-  position: relative;
   border-radius: 50%;
   border: 1.5px solid rgba(255, 255, 255, 0.1);
   background: radial-gradient(circle at 35% 35%, rgba(156, 109, 255, 0.22), transparent 65%);

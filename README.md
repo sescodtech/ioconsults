@@ -26,8 +26,12 @@ admin credentials).
   All defined as Tailwind tokens in `tailwind.config.ts`.
 - Type: Playfair Display (headings), Plus Jakarta Sans (body), IBM Plex Mono
   (small labels/eyebrows).
-- Logo: pulled live from Cloudinary in `components/Logo.tsx`. To change it,
-  update the `LOGO_URL` constant in that file.
+- Logo: lives locally in `/public/logo.png` (icon + wordmark, used in header
+  and footer) and `/public/logo-full.png` (full lockup with tagline, used in
+  the hero). No dependency on Cloudinary or WordPress — safe to delete the
+  old WordPress install without affecting the logo. The footer/dark-section
+  version uses a CSS `invert` filter (`components/Logo.tsx`) rather than a
+  separate white file, since the source PNG has a transparent background.
 
 ## Stack
 

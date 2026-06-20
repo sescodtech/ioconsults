@@ -1,8 +1,5 @@
 import Image from "next/image";
 
-const LOGO_URL =
-  "https://res.cloudinary.com/dwe7lkty4/image/upload/v1781986878/4df55acf-088d-4ec8-b87f-641fb10aca08_wxzr0v.jpg";
-
 const TRAITS = [
   {
     icon: "🎯",
@@ -31,23 +28,28 @@ export default function Hero() {
         {/* Floating logo orb */}
         <div
           aria-hidden="true"
-          className="brand-orb hidden lg:flex absolute right-[7vw] top-1/2 -translate-y-1/2 items-center justify-center"
-          style={{ width: "min(420px, 36vw)", height: "min(420px, 36vw)" }}
+          className="brand-orb hidden lg:flex items-center justify-center"
+          style={{
+            position: "absolute",
+            top: "50%",
+            right: "7vw",
+            transform: "translateY(-50%)",
+            width: "min(420px, 36vw)",
+            height: "min(420px, 36vw)",
+          }}
         >
-          <div className="relative z-10 w-[55%] max-w-[200px] rounded-xl bg-white/95 p-4">
-            <Image
-              src={LOGO_URL}
-              alt="IOCONSULTS"
-              height={120}
-              width={200}
-              className="h-auto w-full object-contain opacity-90"
-            />
-          </div>
+          <Image
+            src="/logo-full.png"
+            alt="IOCONSULTS — Engage. Elevate. Excel."
+            height={180}
+            width={349}
+            className="relative z-10 w-[55%] max-w-[220px] h-auto object-contain opacity-90 brightness-0 invert"
+          />
         </div>
 
-        <span className="sparkle hidden lg:block" style={{ top: "22%", right: "14%", width: 5, height: 5 }} />
-        <span className="sparkle hidden lg:block" style={{ top: "18%", right: "28%", width: 4, height: 4, animationDelay: "0.8s" }} />
-        <span className="sparkle hidden lg:block" style={{ top: "68%", right: "6%", width: 6, height: 6, animationDelay: "1.4s" }} />
+        <span className="sparkle hidden lg:block" style={{ position: "absolute", top: "22%", right: "14%", width: 5, height: 5 }} />
+        <span className="sparkle hidden lg:block" style={{ position: "absolute", top: "18%", right: "28%", width: 4, height: 4, animationDelay: "0.8s" }} />
+        <span className="sparkle hidden lg:block" style={{ position: "absolute", top: "68%", right: "6%", width: 6, height: 6, animationDelay: "1.4s" }} />
 
         <div className="relative z-[2] mx-auto max-w-content px-6 lg:px-10 pt-28 pb-20 md:pt-32 md:pb-24">
           <div className="max-w-xl">

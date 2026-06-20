@@ -12,6 +12,12 @@ const SERVICES = [
 
 type Status = "idle" | "loading" | "success" | "error";
 
+const fieldClass =
+  "w-full rounded-lg border hairline bg-mist px-4 py-3 text-[14px] text-ink placeholder:text-slate-light/70 outline-none transition-colors focus:border-brass focus:bg-white focus:ring-4 focus:ring-brass/10";
+
+const labelClass =
+  "block text-[11px] font-bold uppercase tracking-widest2 text-slate-light mb-2";
+
 export default function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
   const [errorMsg, setErrorMsg] = useState("");
@@ -55,15 +61,18 @@ export default function ContactForm() {
 
   if (status === "success") {
     return (
-      <div className="rounded-xl border hairline bg-forest/5 p-8 text-center">
-        <p className="font-display text-2xl text-forest">Message sent.</p>
-        <p className="mt-2 text-sm text-ink/70">
+      <div className="rounded-2xl border hairline bg-mist p-10 text-center">
+        <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-brand-button text-2xl text-white">
+          ✓
+        </div>
+        <p className="mt-5 font-display text-2xl text-ink">Message sent.</p>
+        <p className="mt-2 text-sm text-slate">
           Thank you — we&rsquo;ll get back to you shortly.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-6 text-sm font-medium text-forest underline decoration-brass/40 underline-offset-4 hover:decoration-brass"
+          className="mt-6 text-sm font-semibold text-brass underline decoration-brass/40 underline-offset-4 hover:decoration-brass"
         >
           Send another message
         </button>
@@ -72,16 +81,16 @@ export default function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+    <form onSubmit={handleSubmit} className="space-y-5" noValidate>
       {/* Honeypot field — hidden from real users, catches bots */}
       <div className="hidden" aria-hidden="true">
         <label htmlFor="website">Website</label>
         <input type="text" id="website" name="website" tabIndex={-1} autoComplete="off" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
         <div>
-          <label htmlFor="firstName" className="block text-xs font-mono uppercase tracking-widest2 text-slate mb-2">
+          <label htmlFor="firstName" className={labelClass}>
             First Name
           </label>
           <input
@@ -89,11 +98,12 @@ export default function ContactForm() {
             name="firstName"
             type="text"
             required
-            className="w-full border-0 border-b hairline bg-transparent py-2.5 text-ink focus:outline-none focus:border-brass transition-colors"
+            placeholder="Chukwuemeka"
+            className={fieldClass}
           />
         </div>
         <div>
-          <label htmlFor="lastName" className="block text-xs font-mono uppercase tracking-widest2 text-slate mb-2">
+          <label htmlFor="lastName" className={labelClass}>
             Last Name
           </label>
           <input
@@ -101,25 +111,27 @@ export default function ContactForm() {
             name="lastName"
             type="text"
             required
-            className="w-full border-0 border-b hairline bg-transparent py-2.5 text-ink focus:outline-none focus:border-brass transition-colors"
+            placeholder="Obi"
+            className={fieldClass}
           />
         </div>
       </div>
 
       <div>
-        <label htmlFor="company" className="block text-xs font-mono uppercase tracking-widest2 text-slate mb-2">
+        <label htmlFor="company" className={labelClass}>
           Company Name
         </label>
         <input
           id="company"
           name="company"
           type="text"
-          className="w-full border-0 border-b hairline bg-transparent py-2.5 text-ink focus:outline-none focus:border-brass transition-colors"
+          placeholder="Meridian Group Ltd"
+          className={fieldClass}
         />
       </div>
 
       <div>
-        <label htmlFor="email" className="block text-xs font-mono uppercase tracking-widest2 text-slate mb-2">
+        <label htmlFor="email" className={labelClass}>
           Email Address
         </label>
         <input
@@ -127,12 +139,13 @@ export default function ContactForm() {
           name="email"
           type="email"
           required
-          className="w-full border-0 border-b hairline bg-transparent py-2.5 text-ink focus:outline-none focus:border-brass transition-colors"
+          placeholder="hello@company.com"
+          className={fieldClass}
         />
       </div>
 
       <div>
-        <label htmlFor="service" className="block text-xs font-mono uppercase tracking-widest2 text-slate mb-2">
+        <label htmlFor="service" className={labelClass}>
           Service of Interest
         </label>
         <select
@@ -140,7 +153,7 @@ export default function ContactForm() {
           name="service"
           required
           defaultValue=""
-          className="w-full border-0 border-b hairline bg-transparent py-2.5 text-ink focus:outline-none focus:border-brass transition-colors"
+          className={`${fieldClass} appearance-none bg-[url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2212%22%20height%3D%2212%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%234A4560%22%20stroke-width%3D%222.5%22%3E%3Cpath%20d%3D%22M6%209l6%206%206-6%22%2F%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[right_1rem_center] pr-10`}
         >
           <option value="" disabled>
             Select a service
@@ -154,20 +167,21 @@ export default function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="message" className="block text-xs font-mono uppercase tracking-widest2 text-slate mb-2">
+        <label htmlFor="message" className={labelClass}>
           Message
         </label>
         <textarea
           id="message"
           name="message"
-          rows={4}
+          rows={5}
           required
-          className="w-full border-0 border-b hairline bg-transparent py-2.5 text-ink focus:outline-none focus:border-brass transition-colors resize-none"
+          placeholder="Tell us about your organization and what you're looking to achieve…"
+          className={`${fieldClass} resize-none`}
         />
       </div>
 
       {status === "error" && (
-        <p className="text-sm text-red-700" role="alert">
+        <p className="rounded-lg bg-red-50 px-4 py-3 text-sm text-red-700" role="alert">
           {errorMsg}
         </p>
       )}
@@ -175,10 +189,9 @@ export default function ContactForm() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="inline-flex items-center gap-2 rounded-lg bg-brand-button text-white text-sm font-bold px-7 py-3.5 shadow-[0_6px_22px_rgba(45,27,105,0.28)] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(45,27,105,0.4)] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
+        className="w-full inline-flex items-center justify-center gap-2 rounded-lg bg-brand-button text-white text-[15px] font-bold px-7 py-3.5 shadow-[0_6px_22px_rgba(45,27,105,0.28)] hover:-translate-y-0.5 hover:shadow-[0_12px_32px_rgba(45,27,105,0.4)] transition-all disabled:opacity-60 disabled:cursor-not-allowed disabled:translate-y-0"
       >
         {status === "loading" ? "Sending…" : "Send Message"}
-        {status !== "loading" && <span aria-hidden="true">→</span>}
       </button>
     </form>
   );
