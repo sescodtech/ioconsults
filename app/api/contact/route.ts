@@ -105,7 +105,7 @@ export async function POST(req: NextRequest) {
     await resend.emails.send({
       from: `IOCONSULTS Website <${FROM_EMAIL}>`,
       to: TO_EMAIL,
-      replyTo: email.trim(),
+      reply_to: email.trim(),
       subject: `New enquiry: ${safe.service} — ${safe.firstName} ${safe.lastName}`,
       html: `
         <div style="font-family: Helvetica, Arial, sans-serif; max-width: 560px; margin: 0 auto; color: #0F1A14;">
