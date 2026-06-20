@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Inter", Helvetica, Arial, sans-serif;
+  --font-mono: "IBM Plex Mono", monospace;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    scroll-behavior: auto;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  background-color: #F7F4ED;
+  color: #0F1A14;
+  font-feature-settings: "kern" 1, "liga" 1;
+}
+
+::selection {
+  background-color: #C9A227;
+  color: #0F1A14;
+}
+
+/* Visible keyboard focus everywhere */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid #C9A227;
+  outline-offset: 3px;
+}
+
+/* Margin-note / annotation label, used as the section signature device */
+.section-mark {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #C9A227;
+  position: relative;
+  padding-left: 1.1rem;
+}
+
+.section-mark::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0.45em;
+  width: 0.7rem;
+  height: 1px;
+  background-color: #C9A227;
+}
+
+/* Report-style §-numbered process steps */
+.report-number {
+  font-family: var(--font-mono);
+  font-size: 0.8125rem;
+  color: #C9A227;
+  letter-spacing: 0.05em;
+}
+
+.hairline {
+  border-color: #D9D3C3;
+}
+
+.bg-paper-texture {
+  background-image: radial-gradient(circle at 1px 1px, rgba(15, 26, 20, 0.035) 1px, transparent 0);
+  background-size: 22px 22px;
+}
